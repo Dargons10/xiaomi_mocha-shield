@@ -69,8 +69,8 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 EXTENDED_FONT_FOOTPRINT := true
 
 # Init
-TARGET_INIT_VENDOR_LIB := mocha_init
-TARGET_RECOVERY_DEVICE_MODULES := mocha_init
+#TARGET_INIT_VENDOR_LIB := mocha_init
+#TARGET_RECOVERY_DEVICE_MODULES := mocha_init
 
 # Kernel
 BOARD_KERNEL_CMDLINE := vpr_resize androidboot.selinux=permissive
