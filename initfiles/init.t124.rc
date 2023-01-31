@@ -1,7 +1,9 @@
-import power.mocha.rc
+import vendor/etc/init/hw/power.mocha.rc
 
 on boot
 # Power management settings
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp 0
+
     # Enable power gating of fast CPU's
     write /sys/module/cpuidle_t11x/parameters/cpu_power_gating_in_idle 31
     write /sys/module/cpuidle_t11x/parameters/slow_cluster_power_gating_noncpu 1
