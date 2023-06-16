@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_mocha.mk
+    $(LOCAL_DIR)/aosp_mocha.mk
