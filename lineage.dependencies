@@ -7,4 +7,24 @@
    "repository": "android_hardware_nvidia_libstagefrighthw",
    "target_path": "hardware/nvidia/libstagefrighthw"
  }
+  {
+   "repository": "android_hardware_nvidia_interfaces",
+   "target_path": "hardware/nvidia/interfaces"
+ },
+ {
+   "repository": "android_hardware_nvidia_light",
+   "target_path": "hardware/nvidia/light"
+ },
+ {
+   "repository": "android_hardware_nvidia_memtrack",
+   "target_path": "hardware/nvidia/memtrack"
+ },
+ {
+   "repository": "android_hardware_nvidia_power",
+   "target_path": "hardware/nvidia/power"
+ },
+ {
+   "repository": "android_hardware_nvidia_thermal",
+   "target_path": "hardware/nvidia/thermal"
+ }
 ]
