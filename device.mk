@@ -18,6 +18,7 @@ PRODUCT_AAPT_CONFIG += xlarge large
 TARGET_SCREEN_HEIGHT := 2048
 TARGET_SCREEN_WIDTH := 1536
 TARGET_TEGRA_VERSION := t124
+TARGET_TEGRA_AUDIO_VERSION ?= 2.0
 
 $(call inherit-product-if-exists, vendor/nvidia/shield/mocha.mk)
 
@@ -103,6 +104,9 @@ PRODUCT_COPY_FILES += \
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
     device/xiaomi/mocha/overlay
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += device/xiaoi/mocha
 
 # Permissions
 PRODUCT_COPY_FILES += \
