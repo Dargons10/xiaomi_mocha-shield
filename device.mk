@@ -20,6 +20,7 @@ TARGET_SCREEN_WIDTH := 1536
 TARGET_TEGRA_VERSION := t124
 
 $(call inherit-product-if-exists, vendor/nvidia/shield/mocha.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Audio
 PRODUCT_COPY_FILES += \
