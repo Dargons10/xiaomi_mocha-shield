@@ -58,7 +58,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
     
 # Comm Permissions
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
