@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_mocha.mk
+    $(LOCAL_DIR)/arrow_mocha.mk
