@@ -68,9 +68,9 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
-# Init
-TARGET_INIT_VENDOR_LIB := mocha_init
-TARGET_RECOVERY_DEVICE_MODULES := mocha_init
+# Vendor Init
+TARGET_INIT_VENDOR_LIB      := libinit_mocha
+TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/libmocha/init_mocha.cpp
 
 # Kernel
 BOARD_KERNEL_CMDLINE := vpr_resize androidboot.selinux=permissive
