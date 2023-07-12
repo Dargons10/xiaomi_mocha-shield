@@ -22,7 +22,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_C_INCLUDES := system/core/init \
                     system/core/base/include
 LOCAL_SRC_FILES := init.cpp
-LOCAL_MODULE := mocha_init
+LOCAL_MODULE := init_mocha
 
 include $(BUILD_STATIC_LIBRARY)
 
