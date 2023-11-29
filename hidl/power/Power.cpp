@@ -40,9 +40,7 @@ using ::android::hardware::Void;
 
 static const std::string TAP_TO_WAKE_NODE = "/proc/touchpanel/double_tap_enable";
 static const std::string POWER_PROFILE_PROPERTY = "sys.perf.profile";
-static const int PROFILE_MAX = 4;
-
-const static power_hint_t POWER_HINT_SET_PROFILE = (power_hint_t)0x00000111;
+//static const int PROFILE_MAX = 4;
 
 Power::Power() {
     ALOGI("power_init\n");
@@ -55,7 +53,8 @@ Return<void> Power::setInteractive(bool /*interactive*/)  {
 }
 
 Return<void> Power::powerHint(PowerHint hint, int32_t data) {
-    if (static_cast<power_hint_t>(hint) == POWER_HINT_SET_PROFILE) {
+    //if (static_cast<power_hint_t>(hint) == POWER_HINT_SET_PROFILE) {
+    if (static_cast<power_hint_t>(hint) == 0x00000112) {
         std::string value = std::to_string(data);
         property_set(POWER_PROFILE_PROPERTY.c_str(), value.c_str());
         ALOGI("set power profile = %d", data);
@@ -79,6 +78,7 @@ Return<void> Power::getPlatformLowPowerStats(getPlatformLowPowerStats_cb _hidl_c
     return Void();
 }
 
+/*
 Return<int32_t> Power::getFeature(LineageFeature feature)  {
     if (feature == LineageFeature::SUPPORTED_PROFILES) {
         ALOGI("power profiles POWER_FEATURE_SUPPORTED_PROFILES\n");
@@ -86,6 +86,7 @@ Return<int32_t> Power::getFeature(LineageFeature feature)  {
     }
     return -1;
 }
+*/
 
 status_t Power::registerAsSystemService() {
     status_t ret = 0;
@@ -98,6 +99,7 @@ status_t Power::registerAsSystemService() {
         ALOGI("Successfully registered IPower");
     }
 
+/*
     ret = ILineagePower::registerAsService();
     if (ret != 0) {
         ALOGE("Failed to register ILineagePower (%d)", ret);
@@ -106,6 +108,7 @@ status_t Power::registerAsSystemService() {
         ALOGI("Successfully registered ILineagePower");
     }
 
+*/
 fail:
     return ret;
 }

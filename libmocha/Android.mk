@@ -28,7 +28,7 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := audio_symbols.c
-LOCAL_SHARED_LIBRARIES := libicuuc libicui18n libcutils
+LOCAL_SHARED_LIBRARIES := libandroidicu libcutils
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE := libmocha_audio
 LOCAL_C_INCLUDES := \

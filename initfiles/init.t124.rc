@@ -49,7 +49,7 @@ on boot
     # Little VM tweaks
     write /proc/sys/vm/swappiness 80
     write /proc/sys/vm/vfs_cache_pressure 100
-    
+
     # Prepare CPU/EMC scaling based on DT
     chown system system /sys/kernel/tegra_cpu_emc/table_src
     write /sys/kernel/tegra_cpu_emc/table_src 1
