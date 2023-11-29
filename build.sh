@@ -1,6 +1,6 @@
 isInitialized=false
 
-# Patches(这个补丁已失效，请使用我仓库里面的"Bione_libm-mocha"替换源码里面的“bione”文件夹）
+# Patches
 BIONIC_LIBM_PATCH=9c48399beef7f0b1a1cd14e0353b322027763484
 FENCE_LEAKING_PATCH=7a3b1bae646b580fb67afa590f37eb9c5ed12403
 
@@ -68,7 +68,7 @@ function main()
 	echo "---------------------------------------------------"
 	echo "1 - Compile the ROM                               -"
 	echo "---------------------------------------------------"
-	echo "2 - Sync sources (这个补丁已失效，请使用我仓库里面的"Bione_libm-mocha"替换源码里面的“bione”文件夹）                                 -"
+	echo "2 - Sync sources                                  -"
 	echo "---------------------------------------------------"
 	echo "3 - mm package                                    -"
 	echo "---------------------------------------------------"

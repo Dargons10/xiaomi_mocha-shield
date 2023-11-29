@@ -19,6 +19,8 @@
 
 TARGET_SPECIFIC_HEADER_PATH := device/xiaomi/mocha/include
 
+#SELINUX_IGNORE_NEVERALLOWS := true
+
 # Architecture
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
@@ -52,10 +54,9 @@ TARGET_BOOTANIMATION_HALF_RES := true
 
 # FS
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_EXFAT_DRIVER := sdfat
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USES_MKE2FS := true
 
 # Graphics
@@ -68,9 +69,9 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
-# Init
-TARGET_INIT_VENDOR_LIB := mocha_init
-TARGET_RECOVERY_DEVICE_MODULES := mocha_init
+# Vendor Init
+TARGET_INIT_VENDOR_LIB      := libinit_mocha
+TARGET_RECOVERY_DEVICE_MODULES := $(LOCAL_PATH)/libmocha/init_mocha.cpp
 
 # Kernel
 BOARD_KERNEL_CMDLINE := vpr_resize androidboot.selinux=permissive
@@ -87,7 +88,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $
 BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/mocha/mkbootimg.mk
 
 #BOARD_SYSTEMIMAGE_PARTITION_SIZE := 671088640 # 640 Mb stock partition table
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1537564160 # 1.5 Gb
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1337564160 # 1.2 Gb
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 13742637056
 BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184
 BOARD_BOOTIMAGE_PARTITION_SIZE := 20971520
@@ -96,7 +97,8 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 20971520
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # LINEAGEHW
-JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|device/xiaomi/mocha/lineagehw|**/*.java
+#BOARD_HARDWARE_CLASS := device/xiaomi/mocha/lineagehw
+JAVA_SOURCE_OVERLAYS := device/xiaomi/mocha/lineagehw|**/*.java
 
 # Offmode Charging
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
@@ -121,7 +123,7 @@ OVERRIDE_RS_DRIVER := libnvRSDriver.so
 BOARD_SEPOLICY_DIRS += device/xiaomi/mocha/sepolicy/common \
                        device/xiaomi/mocha/sepolicy/lineage-common \
                        device/xiaomi/mocha/sepolicy/mocha
-BOARD_SEPOLICY_VERS := 28.0
+
 SELINUX_IGNORE_NEVERALLOWS := true
                        
 # ThermalHAL

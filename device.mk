@@ -19,7 +19,13 @@ TARGET_SCREEN_HEIGHT := 2048
 TARGET_SCREEN_WIDTH := 1536
 TARGET_TEGRA_VERSION := t124
 
-$(call inherit-product-if-exists, vendor/nvidia/shield/mocha.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/mocha/mocha-vendor.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/mocha/consolemode-blobs.mk)
+
+PRODUCT_COPY_FILES_OVERRIDES += \
+    system/etc/apns-conf.xml \
+    system/etc/selective-spn-conf.xml \
+    system/etc/sensitive_pn.xml
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -27,6 +33,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/nvaudio_conf.xml:system/etc/nvaudio_conf.xml
     
 PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
@@ -42,6 +50,10 @@ PRODUCT_PACKAGES += \
     xaplay \
     enctune.conf
 
+# libxml2
+PRODUCT_PACKAGES += \
+    libxml2
+
 # aptXHD
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/aptXHD/libaptX_encoder.so:$(TARGET_COPY_OUT_VENDOR)/lib/libaptX_encoder.so \
@@ -50,6 +62,15 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+
+PRODUCT_PACKAGES += \
+    libbt-vendor \
+    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-service
+
+# DRM HAL
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl
 
 # Camera
 PRODUCT_COPY_FILES += \
@@ -65,26 +86,55 @@ PRODUCT_COPY_FILES += \
     
 # Custom tiles
 PRODUCT_PACKAGES += \
-    ChargerTile \
     PerformanceTile
     
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     fsck.f2fs mkfs.f2fs
-    
+
+# Graphics
+PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.mapper@2.0-impl
+
 # Graphics shim
 PRODUCT_PACKAGES += libs \
                     libshim_zw
                     
-# HIDL HALs
-$(call inherit-product, device/xiaomi/mocha/hidl.mk)
+# HIDL
+vintf_fragments += \
+    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
+
+# HIDL
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
+    android.hidl.base@1.0_system \
+    android.hidl.manager@1.0 \
+    android.hidl.manager@1.0_system
+
+# Binder
+PRODUCT_PACKAGES += \
+    libhidltransport \
+    libhwbinder
+
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
 
 # keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/tegra-kbc.kl:system/usr/keylayout/tegra-kbc.kl \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/Vendor_0955_Product_7210.kl:system/usr/keylayout/Vendor_0955_Product_7210.kl
-    
+
+# Media
+PRODUCT_PACKAGES += \
+    android.hardware.media.omx@1.0-impl \
+    android.hardware.media.omx@1.0-service
+
 # Media config
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
@@ -93,6 +143,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
     $(LOCAL_PATH)/media/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
     
+# Memtrack
+PRODUCT_PACKAGES += \
+    android.hardware.memtrack@1.0-impl \
+    android.hardware.memtrack@1.0-service
+
 # NVIDIA
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.blakemanager.xml:system/etc/permissions/com.nvidia.blakemanager.xml \
@@ -128,7 +183,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
-    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml
+    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
+    frameworks/native/data/etc/android.software.freeform_window_management.xml:system/etc/permissions/android.software.freeform_window_management.xml
     
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -148,10 +204,31 @@ PRODUCT_PACKAGES += \
     ueventd.tn8.rc \
     ussrd.conf \
     ussr_setup
-    
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.0-impl \
+    android.hardware.health@2.0-service
+
+# Light
+PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-service.mocha
+
+# Power
+PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl \
+    android.hardware.power@1.0-service.mocha
+
 # Sensors
 PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service \
     sensors.tegra
+
+# Renderscript
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
 
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
@@ -159,7 +236,22 @@ PRODUCT_PACKAGES += \
 PRODUCT_CHARACTERISTICS := tablet
 
 # Thermal
-PRODUCT_PACKAGES += thermal.tegra
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl \
+    android.hardware.thermal@1.0-service \
+    thermal.tegra
+
+# Trust
+PRODUCT_PACKAGES += \
+    vendor.lineage.trust@1.0-service
+
+# USB HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service.basic
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-service.mocha
 
 # Vendor seccomp policy files for media components:
 PRODUCT_COPY_FILES += \
@@ -181,4 +273,11 @@ PRODUCT_PACKAGES += \
 
 # wifi and bt macs settter
 PRODUCT_PACKAGES += \
-    conn_init
+    android.hardware.wifi@1.0-service \
+    wificond \
+    conn_init \
+
+# Vendor Patch Level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.build.security_patch=2018-12-05
+
