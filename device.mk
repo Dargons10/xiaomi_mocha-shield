@@ -66,7 +66,8 @@ PRODUCT_COPY_FILES += \
 # Custom tiles
 PRODUCT_PACKAGES += \
     ChargerTile \
-    PerformanceTile
+    PerformanceTile \
+    XiaomiParts
     
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -160,6 +161,17 @@ PRODUCT_CHARACTERISTICS := tablet
 
 # Thermal
 PRODUCT_PACKAGES += thermal.tegra
+
+# TimeKeep
+PRODUCT_PACKAGES += \
+    timekeep \
+    TimeKeep
+    
+# FM
+PRODUCT_PACKAGES += \
+    FMRadio \
+    brcm-uim-sysfs \
+    libfmjni
 
 # Vendor seccomp policy files for media components:
 PRODUCT_COPY_FILES += \
